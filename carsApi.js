@@ -30,12 +30,6 @@ app.get("/cars",function(req,res){
     let sort=req.query.sort;
     
 let arr=cars;
-    if(minprice){
-        arr=arr.filter((n)=>n.price>=minprice);
-    }
-    if(maxprice){
-        arr=arr.filter((n)=>n.price<=maxprice);
-    }
     if(fuel){
         arr = cars.filter(n => {
          model= carMaster.find(m => m.model === n.model);
@@ -58,6 +52,13 @@ let arr=cars;
     if(sort==="year"){
         arr.sort((a,b)=>a.year-b.year);
     }
+    if(minprice){
+        arr=arr.filter((n)=>n.price>=minprice);
+    }
+    if(maxprice){
+        arr=arr.filter((n)=>n.price<=maxprice);
+    }
+
     res.send(arr);
     });
     
